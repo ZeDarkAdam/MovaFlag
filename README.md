@@ -1,1 +1,1 @@
-![Watch the video](videos/flags_demo.mp4)
+![Watch the demo](videos/flags_demo.gif)
