@@ -29,18 +29,4 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ibeam7en.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ibeam7ru.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ibeam7enUP.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ibeam7ruUP.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>
