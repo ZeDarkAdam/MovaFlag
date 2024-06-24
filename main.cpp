@@ -6,12 +6,14 @@ HCURSOR     g_hc_ibeam;
 HCURSOR     g_hc_arrow;
 UINT_PTR    g_timer = NULL;
 
+int g_layout = 0;
+
 void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
     int layout = (int)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL)) & 0xFFFF; // Отримання поточної мови введення
-    int caps = GetKeyState(VK_CAPITAL) & 0xFFFF; // Перевірка стану Caps Lock
+    //int caps = GetKeyState(VK_CAPITAL) & 0xFFFF; // Перевірка стану Caps Lock
 
-    if (caps) {
+    /*if (caps) {
         HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE((layout * 10) + 2));
        
         if (hc_new)
@@ -26,14 +28,30 @@ void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
             SetSystemCursor(hc_new, OCR_IBEAM);
         else
             SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
+    }*/
+
+    if (g_layout != layout)
+    {
+        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
+
+        if (hc_new)
+            SetSystemCursor(hc_new, OCR_IBEAM);
+        else
+            SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
+
+
+
+        HCURSOR hc_new_arrow = LoadCursor(g_instance, MAKEINTRESOURCE(layout + 100));
+
+        if (hc_new_arrow)
+            SetSystemCursor(hc_new_arrow, OCR_NORMAL);
+        else
+            SetSystemCursor(CopyCursor(g_hc_arrow), OCR_NORMAL);
+
+        g_layout = layout;
     }
 
-    HCURSOR hc_new_arrow = LoadCursor(g_instance, MAKEINTRESOURCE(layout + 100));
-
-    if (hc_new_arrow)
-        SetSystemCursor(hc_new_arrow, OCR_NORMAL);
-    else
-        SetSystemCursor(CopyCursor(g_hc_arrow), OCR_NORMAL);
+    //g_layout = layout;
 }
 
 int Main()
