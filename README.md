@@ -1,6 +1,6 @@
 Застосунок для відображення мови біля курсору.
 
-![Watch the demo](assets/mova-flag-demo.mp4.gif)
+![Watch the demo](assets/mova-flag-demo.gif)
 
 Мови, що мають прапорці:
 
