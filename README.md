@@ -1,7 +1,6 @@
 Застосунок для відображення мови біля курсору.
 
-![001](https://github.com/user-attachments/assets/50c53634-716d-4a0c-9ea4-903e2a5aa0f1)
-
+![Watch the demo](assets/mova-flag-demo.gif)
 
 Мови, що мають прапорці:
 
