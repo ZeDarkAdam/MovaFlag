@@ -1,46 +1,62 @@
 #define OEMRESOURCE
 #include <windows.h>
 #include <strsafe.h>
-#include "resource.h" // Include the resource header
+#include "resource.h"
 
 HINSTANCE   g_instance;
 HCURSOR     g_hc_ibeam;
+HCURSOR     g_hc_arrow;
 UINT_PTR    g_timer = NULL;
-DWORD       g_layout = 0;
+
 NOTIFYICONDATA g_notifyIconData;
 HMENU       g_hMenu;
 
+int         g_layout = 0;
+
 void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
-    HKL layout = GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL));
-    int caps = GetKeyState(VK_CAPITAL) & 0xFFFF;
+    int layout = (int)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL)) & 0xFFFF; // Отримання поточної мови введення
+    //int caps = GetKeyState(VK_CAPITAL) & 0xFFFF; // Перевірка стану Caps Lock
 
-    if (caps) {
-        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE((reinterpret_cast<UINT_PTR>(layout) & 0xFFFF) * 10 + 2));
+    /*if (caps) {
+        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE((layout * 10) + 2));
 
         if (hc_new)
-        {
             SetSystemCursor(hc_new, OCR_IBEAM);
-        }
         else
-        {
             SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
-        }
     }
+    else {
+        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
 
-    if (g_layout != reinterpret_cast<UINT_PTR>(layout) && !caps)
+        if (hc_new)
+            SetSystemCursor(hc_new, OCR_IBEAM);
+        else
+            SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
+    }*/
+
+    if (g_layout != layout)
     {
-        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(reinterpret_cast<UINT_PTR>(layout) & 0xFFFF));
+        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
 
         if (hc_new)
-        {
             SetSystemCursor(hc_new, OCR_IBEAM);
-        }
         else
-        {
             SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
-        }
+
+
+
+        HCURSOR hc_new_arrow = LoadCursor(g_instance, MAKEINTRESOURCE(layout + 100));
+
+        if (hc_new_arrow)
+            SetSystemCursor(hc_new_arrow, OCR_NORMAL);
+        else
+            SetSystemCursor(CopyCursor(g_hc_arrow), OCR_NORMAL);
+
+        g_layout = layout;
     }
+
+    //g_layout = layout;
 }
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -75,14 +91,21 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 int Main()
 {
     HANDLE mutex = CreateMutex(NULL, FALSE, "Mova");
-    if (GetLastError() == ERROR_ALREADY_EXISTS || GetLastError() == ERROR_ACCESS_DENIED) return 1;
+    if (GetLastError() == ERROR_ALREADY_EXISTS || GetLastError() == ERROR_ACCESS_DENIED)
+        return 1;
 
     g_hc_ibeam = CopyCursor(LoadCursor(NULL, IDC_IBEAM));
-    if (!g_hc_ibeam) return 1;
+    if (!g_hc_ibeam)
+        return 1;
+
+    g_hc_arrow = CopyCursor(LoadCursor(NULL, IDC_ARROW));
+    if (!g_hc_arrow)
+        return 1;
 
     g_instance = GetModuleHandle(NULL);
     g_timer = SetTimer(NULL, g_timer, 200, UpdateTimer);
-    if (!g_timer) return 1;
+    if (!g_timer)
+        return 1;
 
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc = WindowProc;
@@ -95,7 +118,7 @@ int Main()
     if (!hWnd) return 1;
 
     g_hMenu = CreatePopupMenu();
-    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Вихід");
+    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Exit");
 
     g_notifyIconData.cbSize = sizeof(NOTIFYICONDATA);
     g_notifyIconData.hWnd = hWnd;
@@ -114,6 +137,7 @@ int Main()
     }
 
     DestroyCursor(g_hc_ibeam);
+    DestroyCursor(g_hc_arrow);
     return 0;
 }
 
