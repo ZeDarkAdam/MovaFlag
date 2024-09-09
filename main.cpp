@@ -95,7 +95,7 @@ int Main()
     if (!hWnd) return 1;
 
     g_hMenu = CreatePopupMenu();
-    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Вихід");
+    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Exit");
 
     g_notifyIconData.cbSize = sizeof(NOTIFYICONDATA);
     g_notifyIconData.hWnd = hWnd;
