@@ -90,7 +90,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 int Main()
 {
-    HANDLE mutex = CreateMutex(NULL, FALSE, "Mova");
+    HANDLE mutex = CreateMutex(NULL, FALSE, "MovaFlag");
     if (GetLastError() == ERROR_ALREADY_EXISTS || GetLastError() == ERROR_ACCESS_DENIED)
         return 1;
 
