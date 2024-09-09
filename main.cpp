@@ -15,8 +15,8 @@ int         g_layout = 0;
 
 void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
-    int layout = (int)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL)) & 0xFFFF; // Отримання поточної мови введення
-    //int caps = GetKeyState(VK_CAPITAL) & 0xFFFF; // Перевірка стану Caps Lock
+    int layout = (int)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL)) & 0xFFFF;
+    //int caps = GetKeyState(VK_CAPITAL) & 0xFFFF;
 
     /*if (caps) {
         HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE((layout * 10) + 2));
@@ -30,7 +30,7 @@ void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
         HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
 
         if (hc_new)
-            SetSystemCursor(hc_new, OCR_IBEAM);
+            SetSystemCursor(hc_new, OCR_IBEAM);     
         else
             SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
     }*/
