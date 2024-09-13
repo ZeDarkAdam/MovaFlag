@@ -136,6 +136,9 @@ int Main()
         DispatchMessage(&msg);
     }
 
+    SetSystemCursor(g_hc_ibeam, OCR_IBEAM);
+    SetSystemCursor(g_hc_arrow, OCR_NORMAL);
+
     DestroyCursor(g_hc_ibeam);
     DestroyCursor(g_hc_arrow);
     return 0;
