@@ -114,7 +114,7 @@ int Main()
     wc.lpszClassName = "LangCursorClass";
     RegisterClass(&wc);
 
-    HWND hWnd = CreateWindow("LangCursorClass", "Mova", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, g_instance, NULL);
+    HWND hWnd = CreateWindow("LangCursorClass", "MovaFlag", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, g_instance, NULL);
     if (!hWnd) return 1;
 
     g_hMenu = CreatePopupMenu();
@@ -126,7 +126,7 @@ int Main()
     g_notifyIconData.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     g_notifyIconData.uCallbackMessage = WM_USER + 1;
     g_notifyIconData.hIcon = LoadIcon(g_instance, MAKEINTRESOURCE(IDI_TRAY_ICON)); // Set tray icon
-    StringCchCopy(g_notifyIconData.szTip, ARRAYSIZE(g_notifyIconData.szTip), "Mova");
+    StringCchCopy(g_notifyIconData.szTip, ARRAYSIZE(g_notifyIconData.szTip), "MovaFlag");
     Shell_NotifyIcon(NIM_ADD, &g_notifyIconData);
 
     MSG msg;
