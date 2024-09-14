@@ -1,18 +1,18 @@
-Застосунок для відображення мови біля курсору.
+# An application for displaying language near the cursor.
 
-![Watch the demo](assets/mova-flag-demo.gif)
+![001](assets/mova-flag-demo.gif)
 
-Мови, що мають прапорці:
+## Flagged languages:
+- English (USA)
+- Ukrainian
+- German
+- Hebrew
+- Polish
 
-Англійська (США)
 
-Українська
 
-Німецька
+![pointer1_en_mul.png](assets/pointer/pointer1_en_mul.png)
 
-Іврит
-
-Польська
 
 Є можливість вимикати застосунок у треї:
 
