@@ -22,7 +22,7 @@
     <ProjectGuid>{4067C221-4F7B-4DF2-AC6E-42CB88B04292}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LangCursor</RootNamespace>
-    <ProjectName>Mova</ProjectName>
+    <ProjectName>MovaFlag</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
