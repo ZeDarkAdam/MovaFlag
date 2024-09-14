@@ -1,23 +1,35 @@
-# An application for displaying language near the cursor.
+## An application for displaying language near the cursor
 
-![001](assets/mova-flag-demo.gif)
+![mova-flag-demo.gif](assets/mova-flag-demo.gif)
 
-## Flagged languages:
+![pointer_def.png](assets/pointer/pointer_def.png)
+![pointer1_de_avg.png](assets/pointer/pointer1_de_avg.png)
+![pointer1_en_mul.png](assets/pointer/pointer1_en_mul.png)
+![pointer1_he_mul.png](assets/pointer/pointer1_he_mul.png)
+![pointer1_pl_mul.png](assets/pointer/pointer1_pl_mul.png)
+![pointer1_ua_mul.png](assets/pointer/pointer1_ua_mul.png)
+
+![pointer_def.png](assets/beam3/beam_def.png)
+![beam3_de_32.png](assets/beam3/beam3_de_32.png)
+![beam3_en_32.png](assets/beam3/beam3_en_32.png)
+![beam3_he_32.png](assets/beam3/beam3_he_32.png)
+![beam3_pl_32.png](assets/beam3/beam3_pl_32.png)
+![beam3_ua_32.png](assets/beam3/beam3_ua_32.png)
+
+### Flagged languages:
 - English (USA)
 - Ukrainian
 - German
 - Hebrew
 - Polish
 
+### It is possible to turn off the flags on the pointer or text cursor in the tray:
 
+![002](assets/tray-demo.png)
 
-![pointer1_en_mul.png](assets/pointer/pointer1_en_mul.png)
-
-
-Є можливість вимикати застосунок у треї:
-
-![002](https://github.com/user-attachments/assets/8d334f11-4294-4870-a110-91f7a07b68f4)
-
-Для автозапуску застосунка розмістіть ярлик на Mova ось тут: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+### To start the program automatically, place the MovaFlag shortcut here: 
+```
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+```
 
 
