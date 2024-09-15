@@ -27,9 +27,6 @@
 
 ![002](assets/tray-demo.png)
 
-### To start the program automatically, place the MovaFlag shortcut here: 
-```
-C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
-```
+
 
 
