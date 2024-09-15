@@ -3,6 +3,8 @@
 #include <strsafe.h>
 #include "resource.h"
 
+#define VERSION "v1.1.2"
+
 HINSTANCE   g_instance;
 HCURSOR     g_hc_ibeam;
 HCURSOR     g_hc_arrow;
@@ -251,10 +253,12 @@ int Main()
     if (!hWnd) return 1;
 
     g_hMenu = CreatePopupMenu();
+    AppendMenu(g_hMenu, MF_STRING | MF_DISABLED | MF_GRAYED, 0, VERSION);
+    AppendMenu(g_hMenu, MF_SEPARATOR, 0, NULL);
     AppendMenu(g_hMenu, MF_STRING | MF_UNCHECKED, ID_TRAY_DISABLE_ARROW, "Disable Arrow Flag");
     AppendMenu(g_hMenu, MF_STRING | MF_UNCHECKED, ID_TRAY_DISABLE_IBEAM, "Disable IBeam Flag");
     AppendMenu(g_hMenu, MF_STRING | MF_UNCHECKED, ID_TRAY_AUTOSTART, "Run at Startup");
-    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Exit");
+    AppendMenu(g_hMenu, MF_STRING, ID_TRAY_EXIT, "Quit");
     //LoadMenuStrings(); // Load localized menu strings
 
     g_notifyIconData.cbSize = sizeof(NOTIFYICONDATA);
