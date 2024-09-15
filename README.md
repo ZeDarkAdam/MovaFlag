@@ -1,6 +1,6 @@
 ## An application for displaying language near the cursor
 
-![mova-flag-demo.gif](assets/mova-flag-demo.gif)
+![mova-flag-demo.gif](assets/mova-flag-demo.mp4)
 
 ![pointer_def.png](assets/pointer/pointer_def.png)
 ![pointer1_de_avg.png](assets/pointer/pointer1_de_avg.png)
