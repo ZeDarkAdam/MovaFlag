@@ -1,4 +1,4 @@
-## An application for displaying language near the cursor
+## MovaFlag is an application for displaying language near the cursor
 
 ![mova-flag-demo.gif](assets/mova-flag-demo.gif)
 
@@ -21,11 +21,14 @@
 ![beam3_ua_32.png](assets/beam3/beam3_ua_32.png)
 
 ### Flagged languages:
-- English (USA)
-- Ukrainian
 - German
+- English (USA)
+- French
 - Hebrew
+- Italian
 - Polish
+- Ukrainian
+
 
 ### It is possible to turn off the flags on the pointer or text cursor in the tray:
 
