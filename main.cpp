@@ -3,7 +3,7 @@
 #include <strsafe.h>
 #include "resource.h"
 
-#define VERSION "v1.1.2"
+#define VERSION "v1.1.3"
 
 HINSTANCE   g_instance;
 HCURSOR     g_hc_ibeam;
@@ -117,53 +117,32 @@ void RemoveFromStartup()
 }
 
 
+void ChangeCursor(int cursor_id, DWORD cursor_type, bool disable_flag, HCURSOR default_cursor)
+{
+    if (!disable_flag)
+    {
+        HCURSOR new_cursor = LoadCursor(g_instance, MAKEINTRESOURCE(cursor_id));
+
+        if (new_cursor)
+            SetSystemCursor(new_cursor, cursor_type);
+        else
+            SetSystemCursor(CopyCursor(default_cursor), cursor_type);
+    }
+}
+
 void CALLBACK UpdateTimer(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
     int layout = (int)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), NULL)) & 0xFFFF;
-    //int caps = GetKeyState(VK_CAPITAL) & 0xFFFF;
-
-    /*if (caps) {
-        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE((layout * 10) + 2));
-
-        if (hc_new)
-            SetSystemCursor(hc_new, OCR_IBEAM);
-        else
-            SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
-    }
-    else {
-        HCURSOR hc_new = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
-
-        if (hc_new)
-            SetSystemCursor(hc_new, OCR_IBEAM);     
-        else
-            SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
-    }*/
 
     if (g_layout != layout)
-    { 
-        if (!g_disable_arrow)
-        {
-            HCURSOR hc_new_arrow = LoadCursor(g_instance, MAKEINTRESOURCE(layout + 100));
+    {
+        ChangeCursor(layout + 100, OCR_NORMAL, g_disable_arrow, g_hc_arrow);
+        ChangeCursor(layout, OCR_IBEAM, g_disable_ibeam, g_hc_ibeam);
 
-            if (hc_new_arrow)
-                SetSystemCursor(hc_new_arrow, OCR_NORMAL);
-            else
-                SetSystemCursor(CopyCursor(g_hc_arrow), OCR_NORMAL);
-        }
-
-        if (!g_disable_ibeam) 
-        {
-            HCURSOR hc_new_beam = LoadCursor(g_instance, MAKEINTRESOURCE(layout));
-
-            if (hc_new_beam)
-                SetSystemCursor(hc_new_beam, OCR_IBEAM);
-            else
-                SetSystemCursor(CopyCursor(g_hc_ibeam), OCR_IBEAM);
-        }
-        
         g_layout = layout;
     }
 }
+
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
